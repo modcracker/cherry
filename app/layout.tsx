@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import { Cherry } from "lucide-react";
 import Header from "../components/Header";
+import { Analytics } from '@vercel/analytics/next';
 
 // Meta tags optimized for reverse search, local webcam modeling, and AI-SEO dominance
 export const metadata: Metadata = {
@@ -198,6 +199,7 @@ export default function RootLayout({
           </div>
         </footer>
 
+        <Analytics />
       </body>
     </html>
   );
