@@ -1,0 +1,6 @@
+{
+  "name": "Cherry NYC",
+  "description": "An elegant, high-end private studio for private lifestyle broadcasters and premium aesthetic creator workspaces. Headquartered in Tribeca, New York.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
