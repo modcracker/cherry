@@ -7,6 +7,18 @@ import heroBg from "../../src/assets/images/elegant_satin_lounging_1782140729935
 
 export default function ContactGateway() {
   const [copied, setCopied] = useState(false);
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [isVerified, setIsVerified] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setNum1(Math.floor(Math.random() * 9) + 2);
+    setNum2(Math.floor(Math.random() * 8) + 2);
+    setMounted(true);
+  }, []);
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText("info@cherry.nyc");
@@ -137,48 +149,91 @@ export default function ContactGateway() {
                   To protect applicant security, we handle all preliminary requests via our verified electronic post. Please direct your questions or appointment bookings directly to our secure inbox:
                 </p>
 
-                {/* Styled copy-interactive address container */}
+                {/* Styled copy-interactive address container with dynamic verification or munged email */}
                 <div className="p-6 bg-black/40 border border-white/5 rounded-2xl space-y-4 text-center">
                   <div className="flex items-center justify-center space-x-2 text-[#FF1E82]">
                     <Mail className="w-4 h-4" />
                     <span className="text-xs font-mono font-bold uppercase tracking-widest">OFFICIAL HANDSHAKE ADDRESS</span>
                   </div>
                   
-                  <div className="py-2">
-                    <a
-                      href="mailto:info@cherry.nyc"
-                      className="text-white text-[20px] font-bold hover:text-[#FF1E82] transition-colors font-mono tracking-tight"
-                    >
-                      info@cherry.nyc
-                    </a>
-                  </div>
+                  {!isVerified ? (
+                    <div className="space-y-4 py-2">
+                      <div className="text-gray-400 text-sm font-medium">
+                        Munged Email: <span className="text-white font-mono select-all bg-white/5 px-2.5 py-1 rounded">i n f o [at] c h e r r y [dot] n y c</span>
+                      </div>
+                      
+                      <form onSubmit={(e) => {
+                        e.preventDefault();
+                        if (parseInt(userAnswer, 10) === num1 + num2) {
+                          setIsVerified(true);
+                          setErrorMsg("");
+                        } else {
+                          setErrorMsg("Incorrect verification code.");
+                        }
+                      }} className="space-y-3 max-w-xs mx-auto">
+                        <label className="block text-xs text-gray-400 font-mono">
+                          To protect against scrapers, please solve: <span className="text-rose-400 font-bold font-sans text-sm">{num1} + {num2} = ?</span>
+                        </label>
+                        <div className="flex gap-2">
+                          <input
+                            type="number"
+                            value={userAnswer}
+                            onChange={(e) => setUserAnswer(e.target.value)}
+                            placeholder="Your answer"
+                            className="w-full h-10 bg-zinc-950 border border-white/10 rounded-xl px-3 text-center text-white text-sm focus:outline-none focus:border-[#FF1E82]/50 transition-colors"
+                            required
+                          />
+                          <button
+                            type="submit"
+                            className="h-10 px-4 bg-[#FF1E82] hover:bg-rose-500 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer"
+                          >
+                            Reveal Email
+                          </button>
+                        </div>
+                        {errorMsg && (
+                          <p className="text-xs text-rose-500 font-medium animate-pulse">{errorMsg}</p>
+                        )}
+                      </form>
+                    </div>
+                  ) : (
+                    <div className="space-y-4 py-2 animate-fade-in">
+                      <div className="py-2">
+                        <a
+                          href="mailto:info@cherry.nyc"
+                          className="text-white text-[20px] font-bold hover:text-[#FF1E82] transition-colors font-mono tracking-tight"
+                        >
+                          info@cherry.nyc
+                        </a>
+                      </div>
 
-                  <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
-                    <button
-                      onClick={copyEmailToClipboard}
-                      className="flex-1 h-11 flex items-center justify-center space-x-2 rounded-xl bg-white/5 hover:bg-white hover:text-black border border-white/10 text-xs font-bold transition-all cursor-pointer"
-                    >
-                      {copied ? (
-                        <>
-                          <ClipboardCheck className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>Copied perfectly!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Clipboard className="w-3.5 h-3.5 text-gray-400" />
-                          <span>Copy Email Address</span>
-                        </>
-                      )}
-                    </button>
+                      <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
+                        <button
+                          onClick={copyEmailToClipboard}
+                          className="flex-1 h-11 flex items-center justify-center space-x-2 rounded-xl bg-white/5 hover:bg-white hover:text-black border border-white/10 text-xs font-bold transition-all cursor-pointer"
+                        >
+                          {copied ? (
+                            <>
+                              <ClipboardCheck className="w-3.5 h-3.5 text-emerald-400" />
+                              <span>Copied perfectly!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Clipboard className="w-3.5 h-3.5 text-gray-400" />
+                              <span>Copy Email Address</span>
+                            </>
+                          )}
+                        </button>
 
-                    <a
-                      href="mailto:info@cherry.nyc"
-                      className="flex-1 h-11 flex items-center justify-center space-x-2 rounded-xl bg-[#FF1E82] hover:bg-rose-500 text-xs font-bold transition-all cursor-pointer shadow-lg shadow-[#FF1E82]/10"
-                    >
-                      <span>Open Mail Client</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </a>
-                  </div>
+                        <a
+                          href="mailto:info@cherry.nyc"
+                          className="flex-1 h-11 flex items-center justify-center space-x-2 rounded-xl bg-[#FF1E82] hover:bg-rose-500 text-xs font-bold transition-all cursor-pointer shadow-lg shadow-[#FF1E82]/10"
+                        >
+                          <span>Open Mail Client</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Simple structural FAQ/Guideline list to tell a pristine story */}

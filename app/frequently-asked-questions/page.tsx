@@ -1,112 +1,58 @@
 "use client";
 
-import React from "react";
-import { HelpCircle, FileText, Landmark, ShieldCheck, ArrowRight, CornerDownRight } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Sparkles, HelpCircle } from "lucide-react";
 
-export default function FAQ() {
-  const textTitle = { fontSize: "32px", fontFamily: "Arial, sans-serif", fontWeight: 700 };
-  const textHeader = { fontSize: "16px", fontFamily: "Arial, sans-serif", fontWeight: 700 };
-  const textBody = { fontSize: "13px", fontFamily: "Arial, sans-serif", fontWeight: 400, lineHeight: 1.6 };
-
+export default function FAQPage() {
   const faqs = [
     {
-      q: "How does the 70/30 payout split work?",
-      a: "At Cherry NYC, you keep a full 70% of gross tips, subscriptions, tokens, and direct fan payouts. The remaining 30% acts as our workspace margin to pay for your luxury Tribeca suite lease, high-fidelity soundproofing elements, mirrorless 4K lens equipment and advanced IP geoblock systems.",
-      category: "payouts-and-banking"
+      q: "How does the split structure work in detail?",
+      a: "Unlike traditional agencies that take up to 45% of earnings, Cherry NYC guarantees models keep 85% to 90% of their raw broadcast revenue. No surprise desk fees, platform overhead splits, or hidden deductions.",
     },
     {
-      q: "When are payments distributed, and are they secure?',",
-      a: "Every Tuesday, we issue direct electronic payouts. You get custom bookkeeping spreadsheets outlining every single transaction. Payments are sent via discrete corporate accounts to protect your bank trail.",
-      category: "payouts-and-banking"
+      q: "Can I remain completely anonymous to my friends and family?",
+      a: "Yes. Anonymity is our primary priority. We actively integrate automated DMCA takedown scripts and execute coordinate-level opt-outs with public computer facial search databases like PIMEyes, making it virtually impossible for your streams to correlate with your private life.",
     },
     {
-      q: "How do you handle 1099 taxes and tax write-offs?",
-      a: "Our independent creators operate as self-employed 1099 contractors. We provide itemized year-end earnings reports and connect you with trusted, modeling-friendly accounting professionals to write off styling accessories, cosmetics, travel, and wellness expenditures legally.",
-      category: "taxes-write-offs"
+      q: "What equipment are the New York studios loaded with?",
+      a: "Our spaces are equipped with premium 4K DSLR camera setups, professional warm ring-grids, fully soundproof walls, separate dressing rooms, sateen linens, and dedicated hardware routers running private high-speed business fibers.",
     },
     {
-      q: "What prevents local family or friends from finding my stream?",
-      a: "Our advanced Geofencing systems let us blacklist entire regional zipcodes, cities, boroughs, states, or countries. If someone tries to view your profile from a blacklisted zone, they see a completely blank, offline status.",
-      category: "privacy-and-anonymity"
+      q: "Am I locked into long-term contracts?",
+      a: "Absolutely not. All agreement models feature a zero-penalty 'Immediate Dissolution Option.' If you wish to transition to independent broadcasting, you retain 100% of your broadcast channels, fans, and data.",
     },
-    {
-      q: "How does Cherry NYC defend creators from reverse-indexing bots (PimEyes)?",
-      a: "We maintain direct developer APIs with top facial search tools like PimEyes to file biometric blocks on your behalf. Additionally, we use dynamic overlays on our video feeds that confuse indexing algorithms, preventing automated capture.",
-      category: "privacy-and-anonymity"
-    },
-    {
-      q: "Do I have to sign a lock-in agency contract?",
-      a: "No. High-end creators deserve freedom. Our contracts are completely standard no-claws agreements. You can walk away anytime with zero technical penalties, zero traps, and 100% ownership of your digital channels.",
-      category: "legal-and-onboarding"
-    },
-    {
-      q: "What is your physical safety model at the Tribeca studio?",
-      a: "We operate on a zero-physical-touch, 100% digital policy. There are zero client meetups, zero local fan connections, and zero physical interactions. Our facilities are locked down with keycard doors and discrete exit routes near Greenwich Street.",
-      category: "physical-studio"
-    }
   ];
 
   return (
-    <div className="min-h-screen bg-[#070708] py-20 text-white font-normal text-left">
-      <div className="max-w-4xl mx-auto px-6">
-        
-        {/* Header Block */}
-        <div className="space-y-4 mb-16 text-center max-w-2xl mx-auto">
-          <span style={textHeader} className="text-[#FF1E82] uppercase tracking-widest block font-bold">
-            Creator Knowledge Base
-          </span>
-          <h1 style={textTitle} className="text-white leading-tight">
-            Frequently Asked Questions
+    <div className="relative min-h-screen bg-[#070708] text-gray-200">
+      <Header />
+      <main className="pt-36 max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="space-y-8">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-rose-500/10 border border-rose-500/15 text-rose-400 text-xs font-mono rounded-full uppercase tracking-widest font-bold">
+            <HelpCircle className="w-3.5 h-3.5" /> Frequently Asked Questions
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-display font-light text-white leading-tight">
+            Clear Integrity <br />
+            <span className="font-semibold text-rose-500">And Support</span>
           </h1>
-          <p style={textBody} className="text-gray-400">
-            Learn more about banking, tax filing schedules, geoblocks, physical safety boundaries, and other operational guidelines for independent lifestyle broadcasters.
+          <p className="text-sm text-gray-400 font-sans leading-relaxed">
+            We operate structures designed purely to empower modern creators. Review standard inquiries below, or connect with our corporate desk directly at contact@cherry.nyc.
           </p>
-        </div>
 
-        {/* FAQs list */}
-        <div className="space-y-8 mb-16">
-          {faqs.map((faq, index) => (
-            <div 
-              key={index} 
-              id={faq.category} 
-              className="p-6 rounded-2xl bg-[#09090A] border border-white/5 space-y-3"
-            >
-              <div className="flex items-start space-x-3">
-                <HelpCircle className="w-5 h-5 text-[#FF1E82] shrink-0 mt-0.5" />
-                <h3 style={textHeader} className="text-white font-bold leading-tight">
-                  {faq.q}
+          <div className="space-y-6 pt-6">
+            {faqs.map((faq, index) => (
+              <div key={index} className="glass-panel p-6 rounded-xl space-y-3">
+                <h3 className="text-base font-semibold text-white font-display flex items-start gap-2">
+                  <span className="text-rose-500 font-mono">Q.</span> {faq.q}
                 </h3>
+                <p className="text-xs text-gray-400 font-sans leading-relaxed pl-5">{faq.a}</p>
               </div>
-              
-              <div className="flex items-start space-x-3 pl-8">
-                <CornerDownRight className="w-4 h-4 text-gray-600 shrink-0 mt-1" />
-                <p style={textBody} className="text-gray-400 font-normal leading-relaxed">
-                  {faq.a}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Dynamic Category Anchors links panel */}
-        <div className="p-8 rounded-2xl bg-[#0F0F12] border border-white/5 space-y-4">
-          <span style={textHeader} className="text-white block font-bold">
-            Still Have Questions?
-          </span>
-          <p style={textBody} className="text-gray-300">
-            For advanced queries regarding corporate bank write-offs, routing geoblocks, or to tour our private Tribeca lofts, reach out safely to our digital privacy team.
-          </p>
-          <div>
-            <a
-              href="/contact"
-              className="inline-flex h-11 px-8 rounded-full bg-[#FF1E82] text-white hover:bg-white hover:text-black transition-all text-xs font-bold items-center"
-            >
-              Contact Onboarding Team <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
+            ))}
           </div>
         </div>
-
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }
